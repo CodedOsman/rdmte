@@ -1,0 +1,145 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: json, mbstring
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Tailwind CSS
+        run: npm run build
+
+      - name: Create static build directory
+        run: mkdir -p build
+
+      - name: Render PHP to HTML
+        run: |
+          # Create a PHP build script
+          cat > build.php << 'PHPSCRIPT'
+          <?php
+          $baseDir = __DIR__;
+          $buildDir = $baseDir . '/build';
+          
+          // Ensure build directory exists
+          if (!is_dir($buildDir)) {
+              mkdir($buildDir, 0755, true);
+          }
+          
+          // Copy all static assets (non-PHP files)
+          $iterator = new RecursiveIteratorIterator(
+              new RecursiveDirectoryIterator($baseDir, RecursiveDirectoryIterator::SKIP_DOTS),
+              RecursiveIteratorIterator::SELF_FIRST
+          );
+          
+          foreach ($iterator as $file) {
+              if ($file->isFile()) {
+                  $path = $file->getPathname();
+                  $relativePath = str_replace($baseDir . DIRECTORY_SEPARATOR, '', $path);
+                  
+                  // Skip files we don't need
+                  if (preg_match('/^\.git/', $relativePath)) continue;
+                  if (preg_match('/^build/', $relativePath)) continue;
+                  if (preg_match('/^node_modules/', $relativePath)) continue;
+                  if (preg_match('/package\.json$/', $relativePath)) continue;
+                  if (preg_match('/tailwind\.config\.js$/', $relativePath)) continue;
+                  if (preg_match('/\.gitignore$/', $relativePath)) continue;
+                  if (preg_match('/^README/', $relativePath)) continue;
+                  if (preg_match('/^deploy/', $relativePath)) continue;
+                  if (preg_match('/^GEMINI\.md/', $relativePath)) continue;
+                  if (preg_match('/^DESIGN\.md/', $relativePath)) continue;
+                  
+                  // Skip PHP files (we'll render them separately)
+                  if ($file->getExtension() === 'php') continue;
+                  
+                  $destPath = $buildDir . DIRECTORY_SEPARATOR . $relativePath;
+                  $destDir = dirname($destPath);
+                  
+                  if (!is_dir($destDir)) {
+                      mkdir($destDir, 0755, true);
+                  }
+                  
+                  copy($path, $destPath);
+                  echo "Copied: $relativePath\n";
+              }
+          }
+          
+          // List of PHP files to render
+          $phpFiles = [
+              'index.php' => 'index.html',
+              'privacy.php' => 'privacy.html',
+              'terms.php' => 'terms.html',
+              '404.php' => '404.html',
+          ];
+          
+          // Render each PHP file
+          foreach ($phpFiles as $phpFile => $htmlFile) {
+              $phpPath = $baseDir . DIRECTORY_SEPARATOR . $phpFile;
+              $htmlPath = $buildDir . DIRECTORY_SEPARATOR . $htmlFile;
+              
+              if (file_exists($phpPath)) {
+                  ob_start();
+                  include $phpPath;
+                  $content = ob_get_clean();
+                  
+                  file_put_contents($htmlPath, $content);
+                  echo "Rendered: $phpFile -> $htmlFile\n";
+              }
+          }
+          ?>
+          PHPSCRIPT
+          
+          # Run the build script
+          php build.php
+
+      - name: Copy built CSS to build directory
+        run: |
+          if [ -f "dist/styles.css" ]; then
+            cp dist/styles.css build/styles.css
+            echo "Copied built CSS to build directory"
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

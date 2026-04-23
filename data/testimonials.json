@@ -1,0 +1,26 @@
+[
+  {
+    "id": "t1",
+    "author": "Kofi Mensah",
+    "location": "Accra, Ghana",
+    "quote": "Roadmate turned a midnight flat tyre into a 15-minute minor inconvenience. The glassmorphic tracking card kept me calm while I waited.",
+    "rating": 5,
+    "avatar_url": "https://ui-avatars.com/api/?name=Kofi+Mensah&background=FDC003&color=031636&bold=true"
+  },
+  {
+    "id": "t2",
+    "author": "Ama Serwaa",
+    "location": "Kumasi, Ghana",
+    "quote": "Finally, a service that understands the value of time. No phone tag, just instant action. Professional and authoritative response.",
+    "rating": 5,
+    "avatar_url": "https://ui-avatars.com/api/?name=Ama+Serwaa&background=FDC003&color=031636&bold=true"
+  },
+  {
+    "id": "t3",
+    "author": "David Osei",
+    "location": "Tema, Ghana",
+    "quote": "The live tracking is a game changer. Knowing exactly who is coming and seeing them on the map removed all the anxiety of being stranded.",
+    "rating": 4,
+    "avatar_url": "https://ui-avatars.com/api/?name=David+Osei&background=FDC003&color=031636&bold=true"
+  }
+]

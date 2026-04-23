@@ -1,0 +1,7 @@
+[
+  { "city": "Accra", "coords": { "x": 48, "y": 82 }, "status": "Active" },
+  { "city": "Tema", "coords": { "x": 52, "y": 81 }, "status": "Active" },
+  { "city": "Kumasi", "coords": { "x": 42, "y": 65 }, "status": "Active" },
+  { "city": "Takoradi", "coords": { "x": 35, "y": 85 }, "status": "Expanding" },
+  { "city": "Tamale", "coords": { "x": 45, "y": 35 }, "status": "Expanding" }
+]

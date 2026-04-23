@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /data/
+Disallow: /templates/
+Disallow: /scripts/
+Disallow: /styles/
+
+Sitemap: https://roadmate.app/sitemap.xml

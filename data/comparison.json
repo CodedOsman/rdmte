@@ -1,0 +1,41 @@
+{
+  "title": "The Roadmate Difference",
+  "subtitle": "Built for speed. Engineered for trust.",
+  "columns": [
+    { "name": "Feature", "type": "label" },
+    { "name": "Roadmate", "type": "primary", "theme": "guardian" },
+    { "name": "Traditional Services", "type": "secondary", "theme": "standard" }
+  ],
+  "rows": [
+    {
+      "label": "Response Time",
+      "roadmate": "12 mins average",
+      "others": "45-90+ mins",
+      "isHighlight": true
+    },
+    {
+      "label": "Live Tracking",
+      "roadmate": "Standard (Real-time GPS)",
+      "others": "None (Phone tag only)",
+      "isHighlight": false
+    },
+    {
+      "label": "Provider Security",
+      "roadmate": "Biometric & Background Check",
+      "others": "Unverified / Manual",
+      "isHighlight": false
+    },
+    {
+      "label": "Pricing",
+      "roadmate": "Transparent Upfront Quote",
+      "others": "Hidden fees / Negotiation",
+      "isHighlight": false
+    },
+    {
+      "label": "Accountability",
+      "roadmate": "Digital Logs & Support Hub",
+      "others": "Paper receipts / No trail",
+      "isHighlight": true
+    }
+  ]
+}

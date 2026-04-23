@@ -1,0 +1,44 @@
+[
+  {
+    "id": "rapid_response",
+    "title": "Rapid Response",
+    "description": "Our proprietary algorithm connects you to the nearest verified guardian in seconds, reducing wait times by 75% compared to traditional dispatch.",
+    "icon": "lightning",
+    "isFeatured": true
+  },
+  {
+    "id": "verified_pros",
+    "title": "Verified Professionals",
+    "description": "Every provider undergoes rigorous background checks, biometric verification, and ongoing quality auditing to ensure your safety.",
+    "icon": "shield-check",
+    "isFeatured": true
+  },
+  {
+    "id": "availability_247",
+    "title": "24/7 Availability",
+    "description": "Crisis doesn't sleep. Neither do we. Our network is fully operational across all major metropolitan areas, 24 hours a day, 365 days a year.",
+    "icon": "clock",
+    "isFeatured": true
+  },
+  {
+    "id": "flat_tyre",
+    "title": "Flat Tyre Assistance",
+    "description": "Quick, professional tyre changes or puncture repairs wherever you are stuck.",
+    "icon": "tire",
+    "isFeatured": false
+  },
+  {
+    "id": "battery_jump",
+    "title": "Battery Jumpstart",
+    "description": "Powerful jumpstart service to get your engine running in minutes.",
+    "icon": "battery",
+    "isFeatured": false
+  },
+  {
+    "id": "towing",
+    "title": "Professional Towing",
+    "description": "Safe and secure vehicle recovery to your preferred workshop or destination.",
+    "icon": "truck",
+    "isFeatured": false
+  }
+]

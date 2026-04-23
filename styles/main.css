@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    /* High-Contrast Branded Focus States */
+    :focus-visible {
+        outline: 3px solid #FDC003 !important;
+        outline-offset: 4px !important;
+        border-radius: 4px !important;
+        transition: outline-offset 0.2s ease;
+    }
+
+    /* Exception for dark backgrounds */
+    .bg-primary :focus-visible, 
+    #footer :focus-visible {
+        outline-color: #FFFFFF !important;
+    }
+}

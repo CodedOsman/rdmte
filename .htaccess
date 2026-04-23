@@ -1,0 +1,29 @@
+# Roadmate Web Server Configuration
+
+# 1. Custom Error Pages
+ErrorDocument 404 /404.php
+
+# 2. Security Headers
+<IfModule mod_headers.c>
+    Header set X-Frame-Options "DENY"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set X-Content-Type-Options "nosniff"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://ui-avatars.com https://api.placeholder.com;"
+</IfModule>
+
+# 3. Force HTTPS (Optional - Un-comment if SSL is active)
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 4. Protect Data & API directories
+<Subdir data>
+    Order Allow,Deny
+    Deny from all
+</Subdir>
+
+<Subdir templates>
+    Order Allow,Deny
+    Deny from all
+</Subdir>

@@ -1,0 +1,15 @@
+{
+  "base_prices": [
+    { "service": "Flat Tyre", "base": 80, "currency": "GHS" },
+    { "service": "Battery Jump", "base": 60, "currency": "GHS" },
+    { "service": "Fuel Delivery", "base": 50, "currency": "GHS" },
+    { "service": "Towing", "base": 250, "currency": "GHS" },
+    { "service": "Key Retrieval", "base": 120, "currency": "GHS" }
+  ],
+  "vehicle_multipliers": {
+    "Sedan": 1.0,
+    "SUV": 1.2,
+    "Truck": 1.5,
+    "Motorcycle": 0.8
+  }
+}

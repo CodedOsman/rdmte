@@ -1,0 +1,13 @@
+{
+  "name": "roadmate-landing",
+  "version": "1.0.0",
+  "description": "Roadmate high-conversion marketing page",
+  "main": "index.php",
+  "scripts": {
+    "build": "tailwindcss -i ./styles/main.css -o ./dist/styles.css --minify",
+    "watch": "tailwindcss -i ./styles/main.css -o ./dist/styles.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}

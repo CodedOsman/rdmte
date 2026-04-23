@@ -1,0 +1,20 @@
+{
+  "vetting_process": [
+    {
+      "title": "Biometric Verification",
+      "description": "Every provider must match their government-issued ID via live facial recognition."
+    },
+    {
+      "title": "Criminal Background Check",
+      "description": "Comprehensive screening across national databases for maximum safety."
+    },
+    {
+      "title": "Vehicle & Equipment Audit",
+      "description": "Regular physical inspections of recovery equipment and towing vehicles."
+    },
+    {
+      "title": "Quality Score Monitoring",
+      "description": "Providers must maintain a 4.5+ star rating to remain active on the network."
+    }
+  ]
+}
